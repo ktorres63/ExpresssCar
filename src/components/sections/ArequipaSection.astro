@@ -1,0 +1,28 @@
+---
+import ButtonLink from '../ui/ButtonLink.astro';
+import PhotoSlot from '../ui/PhotoSlot.astro';
+import { site, siteImages } from '../../data/site';
+---
+
+<section id="arequipa" class="bg-white">
+	<div class="mx-auto grid max-w-7xl items-center gap-12 px-5 py-20 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-28">
+		<PhotoSlot
+			src={siteImages.arequipa}
+			alt="Vista de Arequipa"
+			placeholder="Fotografía de Arequipa pendiente (material con licencia o del cliente)"
+			class="aspect-[4/3] w-full"
+		/>
+
+		<div>
+			<p class="text-sm font-bold uppercase tracking-[0.2em] text-brand-red">Arequipa</p>
+			<h2 class="mt-3 text-3xl font-black sm:text-4xl">Transporte privado para tu visita a Arequipa</h2>
+			<p class="mt-6 text-lg leading-relaxed text-steel">
+				Si visitas Arequipa por turismo, negocios o un evento, podemos organizar tu transporte privado.
+				Coordinamos el servicio según las fechas y el itinerario que acuerdes con nosotros.
+			</p>
+			<div class="mt-10">
+				<ButtonLink href={site.quoteHref} variant="outline-dark">Solicitar cotización</ButtonLink>
+			</div>
+		</div>
+	</div>
+</section>

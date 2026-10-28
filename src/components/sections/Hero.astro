@@ -1,0 +1,164 @@
+---
+import ButtonLink from '../ui/ButtonLink.astro';
+import { heroMedia, site } from '../../data/site';
+---
+
+<section
+	id="inicio"
+	class="hero relative isolate flex items-center overflow-hidden bg-charcoal text-white"
+>
+	<div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+		<img
+			src={heroMedia.poster}
+			alt=""
+			width="1000"
+			height="550"
+			fetchpriority="high"
+			decoding="async"
+			class="absolute inset-0 h-full w-full object-cover object-center"
+		/>
+		<video
+			data-hero-video
+			data-src={heroMedia.video}
+			autoplay
+			muted
+			loop
+			playsinline
+			preload="none"
+			class="hero-video absolute inset-0 h-full w-full object-cover object-center"
+		>
+		</video>
+		<div class="hero-scrim absolute inset-0"></div>
+	</div>
+
+	<div class="mx-auto w-full max-w-7xl px-5 py-16 lg:px-8 lg:py-24">
+		<div class="hero-enter max-w-2xl">
+			<p class="flex items-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-white">
+				<span class="h-px w-8 shrink-0 bg-brand-red" aria-hidden="true"></span>
+				{site.location}
+			</p>
+			<h1 class="mt-4 text-4xl font-black leading-tight sm:text-5xl lg:text-6xl">
+				Que tu tiempo no se detenga.
+			</h1>
+			<p class="mt-6 max-w-xl text-lg leading-relaxed text-white/90">
+				Te movilizamos a tu medida. Alquiler de vehículos y transporte privado para viajes, empresas,
+				traslados al aeropuerto y grupos.
+			</p>
+			<div class="mt-10 flex flex-col gap-4 sm:flex-row">
+				<ButtonLink href={site.quoteHref} variant="primary">Solicitar cotización</ButtonLink>
+				<ButtonLink href="#flota" variant="outline-light">Ver flota</ButtonLink>
+			</div>
+			<p class="mt-8 max-w-xl text-sm text-white/85">
+				Enviar una consulta no confirma una reserva. El equipo revisa la disponibilidad y te contacta para
+				confirmar los detalles.
+			</p>
+		</div>
+	</div>
+</section>
+
+<style>
+	.hero {
+		min-height: 40rem;
+		/* Ocupa la ventana menos la cabecera sticky (h-20 = 5rem). */
+		min-height: calc(100svh - 5rem);
+	}
+
+	.hero-scrim {
+		background: linear-gradient(
+			180deg,
+			rgb(32 33 36 / 0.6) 0%,
+			rgb(32 33 36 / 0.78) 42%,
+			rgb(32 33 36 / 0.92) 100%
+		);
+	}
+
+	.hero-video {
+		opacity: 0;
+		transition: opacity 700ms ease-out;
+	}
+
+	.hero-video.is-visible {
+		opacity: 1;
+	}
+
+	@media (min-width: 64rem) {
+		.hero-scrim {
+			background:
+				linear-gradient(90deg, rgb(32 33 36 / 0.88) 0%, rgb(32 33 36 / 0.58) 48%, rgb(32 33 36 / 0.12) 100%),
+				linear-gradient(0deg, rgb(32 33 36 / 0.4) 0%, transparent 50%);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.hero-video {
+			transition: none;
+		}
+	}
+</style>
+
+<script>
+	const video = document.querySelector<HTMLVideoElement>('[data-hero-video]');
+	const source = video?.dataset.src;
+	const desktopQuery = window.matchMedia('(min-width: 64rem)');
+	const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+	const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+	// Tablets y móviles en horizontal superan los 1024 px; el puntero táctil los excluye.
+	const touchOnly = navigator.maxTouchPoints > 0 && !window.matchMedia('(hover: hover)').matches;
+	const TIMEOUT_MS = 3000;
+
+	type State = 'idle' | 'loading' | 'playing' | 'failed';
+
+	let state: State = 'idle';
+	let timeoutId: number | undefined;
+
+	const stop = () => {
+		if (!video) return;
+		video.pause();
+		video.removeAttribute('src');
+		video.load();
+		video.classList.remove('is-visible');
+	};
+
+	const fail = () => {
+		if (state === 'failed') return;
+		state = 'failed';
+		window.clearTimeout(timeoutId);
+		stop();
+	};
+
+	const playWhenReady = async () => {
+		if (!video || state !== 'loading') return;
+
+		try {
+			await video.play();
+		} catch {
+			fail();
+			return;
+		}
+
+		if (state !== 'loading') return;
+		state = 'playing';
+		window.clearTimeout(timeoutId);
+		video.classList.add('is-visible');
+	};
+
+	const start = () => {
+		if (!video || !source || state !== 'idle') return;
+		if (!desktopQuery.matches || motionQuery.matches || touchOnly || connection?.saveData === true) return;
+
+		state = 'loading';
+		video.muted = true;
+		video.src = source;
+		video.addEventListener('canplay', playWhenReady, { once: true });
+		video.addEventListener('error', fail, { once: true });
+		// Si en 3 s no está listo, se cancela la carga y se mantiene la imagen de respaldo.
+		timeoutId = window.setTimeout(fail, TIMEOUT_MS);
+		video.load();
+	};
+
+	motionQuery.addEventListener('change', (event) => {
+		if (event.matches) fail();
+	});
+
+	start();
+</script>

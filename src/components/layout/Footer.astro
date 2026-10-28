@@ -1,0 +1,41 @@
+---
+import { navItems, site } from '../../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-charcoal text-white">
+	<div class="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:grid-cols-3 lg:px-8">
+		<div>
+			<p class="text-lg font-black tracking-wide">
+				G&amp;L <span class="text-brand-red">CAR EXPRESS</span>
+			</p>
+			<p class="mt-4 max-w-xs text-sm leading-relaxed text-white/75">{site.slogan}</p>
+		</div>
+
+		<nav aria-label="Pie de página">
+			<ul class="grid grid-cols-2 gap-x-8 gap-y-3 text-sm">
+				{
+					navItems.map((item) => (
+						<li>
+							<a
+								href={item.href}
+								class="text-white/85 transition-colors duration-200 hover:text-white hover:underline hover:decoration-brand-red hover:decoration-2 hover:underline-offset-4"
+							>
+								{item.label}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</nav>
+
+		<p class="text-sm text-white/75">{site.location}</p>
+	</div>
+
+	<div class="border-t border-white/10">
+		<p class="mx-auto max-w-7xl px-5 py-6 text-xs text-white/60 lg:px-8">
+			© {year} G&amp;L CAR EXPRESS. Todos los derechos reservados.
+		</p>
+	</div>
+</footer>

@@ -1,0 +1,23 @@
+---
+interface Props {
+  src: string | null;
+  alt: string;
+  placeholder: string;
+  class?: string;
+  loading?: 'eager' | 'lazy';
+}
+
+const { src, alt, placeholder, class: className, loading = 'lazy' } = Astro.props;
+---
+
+<div class:list={['relative overflow-hidden bg-mist', className]}>
+  {
+    src ? (
+      <img src={src} alt={alt} loading={loading} decoding="async" class="h-full w-full object-cover" />
+    ) : (
+      <div class="flex h-full w-full items-center justify-center border-2 border-dashed border-steel p-6 text-center text-sm font-semibold text-steel">
+        {placeholder}
+      </div>
+    )
+  }
+</div>

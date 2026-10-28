@@ -1,46 +1,58 @@
-# Astro Starter Kit: Basics
+# G&L CAR EXPRESS — Sitio web
 
-```sh
-pnpm create astro@latest -- --template basics
-```
+Sitio web de marketing para G&L CAR EXPRESS (Arequipa, Perú): alquiler de vehículos y
+transporte privado. El objetivo es presentar los servicios y la flota, y llevar al visitante a
+solicitar una cotización.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Stack
 
-## 🚀 Project Structure
+- Astro 7 (sitio estático)
+- Tailwind CSS 4 (vía `@tailwindcss/vite`)
+- `@lucide/astro` para iconos
+- pnpm como gestor de paquetes
 
-Inside of your Astro project, you'll see the following folders and files:
+## Comandos
+
+| Comando        | Acción                                     |
+| :------------- | :----------------------------------------- |
+| `pnpm install` | Instala dependencias                       |
+| `pnpm dev`     | Servidor de desarrollo en `localhost:4321` |
+| `pnpm build`   | Genera el sitio en `./dist/`               |
+| `pnpm preview` | Previsualiza el sitio compilado             |
+
+## Estructura
 
 ```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+src/
+├── components/
+│   ├── layout/        Header y Footer
+│   ├── sections/      Secciones de la página
+│   ├── fleet/         Tarjeta de vehículo
+│   └── ui/            Botones y bloques de imagen
+├── data/              Contenido editable (sitio, flota, servicios)
+├── layouts/           Layout base y metadatos
+├── pages/index.astro  Página principal
+└── styles/global.css  Tokens de marca y estilos base
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Hero con video
 
-## 🧞 Commands
+- **Escritorio:** `public/videos/3-1uz6Wo_display.mp4` como fondo, con overlay y contenido encima.
+- **Móvil, tablet y `prefers-reduced-motion`:** `public/images/heroRespaldo.webp`. El video no se
+  descarga (la condición se evalúa antes de asignar el `src`).
+- **Carga:** la imagen se muestra de inmediato; el video aparece con un fundido cuando está listo.
+  Si no lo está en 3 segundos, falla o el navegador bloquea la reproducción, se cancela la carga y
+  se conserva la imagen, sin mensajes de error.
+- Las rutas se configuran en `heroMedia` (`src/data/site.ts`).
 
-All commands are run from the root of the project, from a terminal:
+## Contenido pendiente del cliente
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- **Contacto:** WhatsApp, teléfono y correo en `src/data/site.ts`. Mientras estén en `null`, la
+  web muestra marcadores "[... pendiente de confirmar]".
+- **Flota:** `src/data/vehicles.ts` contiene marcadores. Añadir modelos, capacidades y
+  características solo cuando el cliente los confirme.
+- **Imágenes:** la sección de Arequipa y los vehículos siguen con marcadores. Colocar los archivos
+  en `public/images/` y actualizar las rutas en `site.ts` y `vehicles.ts`.
+- **Integración de consultas:** sin definir. No hay formulario porque aún no existe un destino
+  para los envíos.
+- **Protección ejecutiva:** servicio mencionado por el cliente, aún no incluido en la web.

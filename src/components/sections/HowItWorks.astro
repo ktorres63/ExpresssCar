@@ -1,4 +1,7 @@
 ---
+import { ChevronLeft, ChevronRight } from '@lucide/astro';
+import { siteImages } from '../../data/site';
+
 const steps = [
 	{
 		title: 'Explora los servicios',
@@ -26,21 +29,151 @@ const steps = [
 			<h2 class="mt-3 text-3xl font-black sm:text-4xl">¿Cómo funciona?</h2>
 		</div>
 
-		<ol class="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-			{
-				steps.map((step, index) => (
-					<li class="flex flex-col gap-3">
-						<span class="text-4xl font-black text-brand-red">{index + 1}</span>
-						<h3 class="text-lg font-bold">{step.title}</h3>
-						<p class="leading-relaxed text-steel">{step.description}</p>
-					</li>
-				))
-			}
-		</ol>
+		<div class="mt-14 grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-16">
+			<figure class="lg:col-span-6">
+				<img
+					src={siteImages.fleet}
+					alt="Vehículos alineados en un estacionamiento, entre ellos SUVs y una minivan"
+					width="1024"
+					height="576"
+					loading="lazy"
+					decoding="async"
+					class="aspect-[16/9] w-full object-cover object-center"
+				/>
+			</figure>
 
-		<p class="mt-14 max-w-3xl border-l-4 border-brand-red bg-white p-6 text-base leading-relaxed text-charcoal">
+			<div class="min-w-0 lg:col-span-5 lg:col-start-8" data-carousel>
+				<div
+					class="carousel-track flex w-full snap-x snap-mandatory overflow-x-auto"
+					role="group"
+					aria-roledescription="carrusel"
+					aria-label="Pasos para solicitar una cotización"
+					tabindex="0"
+					data-carousel-track
+				>
+					{
+						steps.map((step, index) => (
+							<article
+								class="w-full shrink-0 snap-start pr-8"
+								role="group"
+								aria-roledescription="paso"
+								aria-label={`Paso ${index + 1} de ${steps.length}`}
+								data-carousel-slide
+							>
+								<p class="text-5xl font-black leading-none text-brand-red">
+									{String(index + 1).padStart(2, '0')}
+								</p>
+								<h3 class="mt-5 text-xl font-bold">{step.title}</h3>
+								<p class="mt-3 leading-relaxed text-steel">{step.description}</p>
+							</article>
+						))
+					}
+				</div>
+
+				<div class="mt-8 flex items-center justify-between border-t border-charcoal/15 pt-5">
+					<p class="text-sm font-semibold tabular-nums text-steel" aria-live="polite">
+						<span data-carousel-current>01</span> / {String(steps.length).padStart(2, '0')}
+					</p>
+					<div class="flex gap-2">
+						<button
+							type="button"
+							aria-label="Paso anterior"
+							data-carousel-prev
+							class="inline-flex size-11 items-center justify-center border border-charcoal/20 text-charcoal transition-colors duration-200 hover:bg-charcoal hover:text-white disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:bg-transparent disabled:hover:text-charcoal"
+						>
+							<ChevronLeft size={20} aria-hidden="true" />
+						</button>
+						<button
+							type="button"
+							aria-label="Paso siguiente"
+							data-carousel-next
+							class="inline-flex size-11 items-center justify-center border border-charcoal/20 text-charcoal transition-colors duration-200 hover:bg-charcoal hover:text-white disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:bg-transparent disabled:hover:text-charcoal"
+						>
+							<ChevronRight size={20} aria-hidden="true" />
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<p class="mt-16 max-w-3xl border-l-4 border-brand-red bg-white p-6 text-base leading-relaxed text-charcoal">
 			<strong class="font-bold">Importante:</strong> enviar una solicitud no es lo mismo que confirmar una reserva.
 			La reserva se confirma cuando G&amp;L CAR EXPRESS verifica la disponibilidad y te contacta.
 		</p>
 	</div>
 </section>
+
+<style>
+	.carousel-track {
+		scrollbar-width: none;
+		overscroll-behavior-x: contain;
+	}
+
+	.carousel-track::-webkit-scrollbar {
+		display: none;
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		.carousel-track {
+			scroll-behavior: smooth;
+		}
+	}
+</style>
+
+<script>
+	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+	document.querySelectorAll<HTMLElement>('[data-carousel]').forEach((carousel) => {
+		const track = carousel.querySelector<HTMLElement>('[data-carousel-track]');
+		const slides = Array.from(carousel.querySelectorAll<HTMLElement>('[data-carousel-slide]'));
+		const previous = carousel.querySelector<HTMLButtonElement>('[data-carousel-prev]');
+		const next = carousel.querySelector<HTMLButtonElement>('[data-carousel-next]');
+		const current = carousel.querySelector<HTMLElement>('[data-carousel-current]');
+
+		if (!track || slides.length === 0) return;
+
+		const lastIndex = slides.length - 1;
+		let index = 0;
+
+		const goTo = (target: number, behavior: ScrollBehavior = reduceMotion.matches ? 'auto' : 'smooth') => {
+			if (track.clientWidth === 0) return;
+			track.scrollTo({
+				left: Math.min(lastIndex, Math.max(0, target)) * track.clientWidth,
+				behavior,
+			});
+		};
+
+		const update = () => {
+			if (track.clientWidth === 0) return;
+			index = Math.min(lastIndex, Math.max(0, Math.round(track.scrollLeft / track.clientWidth)));
+			if (previous) previous.disabled = index === 0;
+			if (next) next.disabled = index === lastIndex;
+			if (current) current.textContent = String(index + 1).padStart(2, '0');
+		};
+
+		previous?.addEventListener('click', () => goTo(index - 1));
+		next?.addEventListener('click', () => goTo(index + 1));
+
+		let frame = 0;
+		track.addEventListener(
+			'scroll',
+			() => {
+				cancelAnimationFrame(frame);
+				frame = requestAnimationFrame(update);
+			},
+			{ passive: true },
+		);
+
+		let resizeTimer = 0;
+		window.addEventListener('resize', () => {
+			window.clearTimeout(resizeTimer);
+			resizeTimer = window.setTimeout(() => {
+				if (track.clientWidth === 0) return;
+				track.scrollTo({ left: index * track.clientWidth, behavior: 'auto' });
+				update();
+			}, 150);
+		});
+
+		update();
+	});
+</script>

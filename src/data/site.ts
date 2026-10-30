@@ -36,9 +36,10 @@ export const contactDetails: ContactDetails = {
 };
 
 // Imágenes de secciones dentro de public/.
-export const siteImages: { arequipa: string | null; services: string } = {
+export const siteImages: { arequipa: string | null; services: string; fleet: string } = {
   arequipa: null,
   services: '/images/imgBusiness.webp',
+  fleet: '/images/flota.jpeg',
 };
 
 // Fondo del hero principal. La imagen se muestra siempre; el video solo se carga en escritorio.

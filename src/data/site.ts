@@ -35,9 +35,10 @@ export const contactDetails: ContactDetails = {
   email: null,
 };
 
-// Ruta dentro de public/ cuando el cliente entregue la foto de Arequipa.
-export const siteImages: { arequipa: string | null } = {
+// Imágenes de secciones dentro de public/.
+export const siteImages: { arequipa: string | null; services: string } = {
   arequipa: null,
+  services: '/images/imgBusiness.webp',
 };
 
 // Fondo del hero principal. La imagen se muestra siempre; el video solo se carga en escritorio.

@@ -1,7 +1,6 @@
 ---
 import { Menu, X } from '@lucide/astro';
-import ButtonLink from '../ui/ButtonLink.astro';
-import { navItems, site } from '../../data/site';
+import { navItems } from '../../data/site';
 ---
 
 <header class="sticky top-0 z-50 bg-charcoal text-white">
@@ -45,9 +44,6 @@ import { navItems, site } from '../../data/site';
 					))
 				}
 			</ul>
-			<ButtonLink href={site.quoteHref} variant="primary" class="w-full lg:w-auto" data-menu-link>
-				Solicitar cotización
-			</ButtonLink>
 		</nav>
 	</div>
 </header>

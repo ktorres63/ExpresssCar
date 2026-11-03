@@ -13,8 +13,12 @@ import { vehicles } from '../../data/vehicles';
 			</p>
 		</div>
 
-		<div class="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+		<div class="mt-14 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
 			{vehicles.map((vehicle) => <VehicleCard vehicle={vehicle} />)}
 		</div>
+
+		<p class="mt-8 max-w-3xl text-sm leading-relaxed text-steel">
+			Las fichas técnicas, la disponibilidad y las tarifas se confirman al revisar tu solicitud de cotización.
+		</p>
 	</div>
 </section>

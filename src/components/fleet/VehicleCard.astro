@@ -1,5 +1,5 @@
 ---
-import PhotoSlot from '../ui/PhotoSlot.astro';
+import { ArrowRight } from '@lucide/astro';
 import { vehicleCategoryLabels, type Vehicle } from '../../data/vehicles';
 import { site } from '../../data/site';
 
@@ -8,59 +8,129 @@ interface Props {
 }
 
 const { vehicle } = Astro.props;
+
+const panelId = `vehicle-${vehicle.id}-details`;
+
+// Zona base de la ficha. Ampliar cuando el cliente confirme la cobertura del servicio.
+const serviceZone = 'Arequipa';
+
+const serviceDetails = [
+	{ label: 'Servicio', value: 'Transporte privado' },
+	{ label: 'Zona', value: serviceZone },
+	{ label: 'Disponibilidad', value: 'A confirmar' },
+	...(vehicle.passengers !== undefined
+		? [{ label: 'Pasajeros', value: String(vehicle.passengers) }]
+		: []),
+	...(vehicle.luggage !== undefined
+		? [{ label: 'Maletas', value: String(vehicle.luggage) }]
+		: []),
+	...(vehicle.transmission ? [{ label: 'Transmisión', value: vehicle.transmission }] : []),
+	...(vehicle.climate ? [{ label: 'A/C', value: vehicle.climate }] : []),
+];
 ---
 
-<article class="flex flex-col bg-white">
-	<PhotoSlot
-		src={vehicle.image}
-		alt={vehicle.alt}
-		placeholder="Fotografía pendiente"
-		class="aspect-[16/10] w-full"
-	/>
-	<div class="flex flex-1 flex-col gap-3 border-t-2 border-brand-red p-6">
-		<p class="text-xs font-bold uppercase tracking-[0.15em] text-steel">
+<article
+	class="group flex self-start flex-col overflow-hidden rounded-lg border border-charcoal/10 bg-white transition-colors duration-200 hover:border-charcoal/25"
+>
+	<div class="flex items-center justify-between gap-3 px-4 py-3.5">
+		<span class="rounded-sm bg-charcoal px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-white">
 			{vehicleCategoryLabels[vehicle.category]}
+		</span>
+		<span class="text-right text-[11px] font-semibold leading-tight text-steel">
+			Disponibilidad a confirmar
+		</span>
+	</div>
+
+	<div class="overflow-hidden bg-mist">
+		<img
+			src={vehicle.image}
+			alt={vehicle.alt}
+			width={vehicle.width}
+			height={vehicle.height}
+			loading="lazy"
+			decoding="async"
+			class="aspect-[3/2] w-full object-cover object-center motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-[1.03]"
+		/>
+	</div>
+
+	<div class="flex flex-1 flex-col p-4 pt-5">
+		<h3 class="text-xl font-bold leading-tight">{vehicle.name}</h3>
+		<p class="mt-1 text-sm font-medium text-steel">
+			{vehicleCategoryLabels[vehicle.category]} · Transporte privado
 		</p>
-		<h3 class="text-xl font-bold">{vehicle.name}</h3>
-		{
-			!vehicle.confirmed && (
-				<p class="w-fit bg-charcoal px-2 py-1 text-xs font-semibold text-white">
-					Datos pendientes de confirmar
-				</p>
-			)
-		}
-		{
-			(vehicle.passengers !== undefined || vehicle.luggage !== undefined) && (
-				<dl class="grid grid-cols-2 gap-2 text-sm">
-					{vehicle.passengers !== undefined && (
-						<>
-							<dt class="text-steel">Pasajeros</dt>
-							<dd class="font-semibold">{vehicle.passengers}</dd>
-						</>
-					)}
-					{vehicle.luggage !== undefined && (
-						<>
-							<dt class="text-steel">Equipaje</dt>
-							<dd class="font-semibold">{vehicle.luggage}</dd>
-						</>
-					)}
-				</dl>
-			)
-		}
-		{
-			vehicle.features && vehicle.features.length > 0 && (
-				<ul class="flex flex-wrap gap-2 text-sm text-charcoal">
-					{vehicle.features.map((feature) => (
-						<li class="bg-mist px-3 py-1">{feature}</li>
-					))}
-				</ul>
-			)
-		}
-		<a
-			href={site.quoteHref}
-			class="mt-auto pt-4 text-sm font-bold uppercase tracking-wide text-charcoal underline decoration-brand-red decoration-2 underline-offset-8 transition-colors duration-200 hover:text-brand-red"
-		>
-			Pedir cotización de este vehículo
-		</a>
+
+		<div id={panelId} class="mt-5" hidden>
+			<p class="text-base font-bold">Detalles del servicio</p>
+			<dl class="mt-3 flex flex-col gap-3 rounded-md bg-mist px-4 py-4">
+				{
+					serviceDetails.map((detail) => (
+						<div class="flex items-start justify-between gap-4">
+							<dt class="text-sm text-steel">{detail.label}</dt>
+							<dd class="text-right text-sm font-bold text-charcoal">{detail.value}</dd>
+						</div>
+					))
+				}
+			</dl>
+		</div>
+
+		<div class="mt-5 grid grid-cols-[1.4fr_1fr] gap-2">
+			<a
+				href={site.quoteHref}
+				class="inline-flex items-center justify-center rounded-md bg-brand-red px-4 py-3 text-sm font-bold text-white transition-colors duration-200 hover:bg-brand-red-dark"
+			>
+				Cotizar<span class="sr-only"> {vehicle.name}</span>
+			</a>
+			<button
+				type="button"
+				class="inline-flex items-center justify-center gap-1 whitespace-nowrap rounded-md border border-charcoal/15 bg-white px-2.5 py-3 text-[13px] font-semibold leading-5 text-charcoal transition-colors duration-200 hover:bg-mist"
+				aria-expanded="false"
+				aria-controls={panelId}
+				aria-label={`Ver más información de ${vehicle.name}`}
+				data-vehicle-name={vehicle.name}
+				data-vehicle-toggle
+			>
+				<span data-vehicle-toggle-label>Ver más</span>
+				<ArrowRight
+					size={16}
+					aria-hidden="true"
+					class="shrink-0 transition-transform duration-200 motion-reduce:transition-none"
+				/>
+			</button>
+		</div>
 	</div>
 </article>
+
+<script>
+	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+	document.querySelectorAll<HTMLButtonElement>('[data-vehicle-toggle]').forEach((toggle) => {
+		const panelId = toggle.getAttribute('aria-controls');
+		const panel = panelId ? document.getElementById(panelId) : null;
+		const icon = toggle.querySelector('svg');
+		const label = toggle.querySelector('[data-vehicle-toggle-label]');
+		const vehicleName = toggle.dataset.vehicleName ?? 'este vehículo';
+
+		if (!panel) return;
+
+		toggle.addEventListener('click', () => {
+			const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+			const action = isExpanded ? 'Ver más' : 'Ver menos';
+
+			toggle.setAttribute('aria-expanded', String(!isExpanded));
+			toggle.setAttribute('aria-label', `${action} información de ${vehicleName}`);
+			icon?.classList.toggle('-rotate-90', !isExpanded);
+			if (label) label.textContent = action;
+			panel.hidden = isExpanded;
+
+			if (!isExpanded && !reduceMotion.matches) {
+				panel.animate(
+					[
+						{ opacity: 0, transform: 'translateY(-4px)' },
+						{ opacity: 1, transform: 'none' },
+					],
+					{ duration: 200, easing: 'ease-out' },
+				);
+			}
+		});
+	});
+</script>

@@ -40,7 +40,7 @@ export const vehicles: Vehicle[] = [
     id: 'nissan-urvan',
     name: 'Nissan Urvan',
     category: 'van',
-    image: '/images/nissanUrban.jpg',
+    image: '/images/nissanUrban.jpeg',
     alt: 'Nissan Urvan blanca frente a un concesionario',
     width: 1920,
     height: 1439,

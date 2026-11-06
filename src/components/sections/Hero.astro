@@ -1,4 +1,5 @@
 ---
+import { ArrowRight } from '@lucide/astro';
 import ButtonLink from '../ui/ButtonLink.astro';
 import { heroMedia, site } from '../../data/site';
 ---
@@ -41,12 +42,23 @@ import { heroMedia, site } from '../../data/site';
 				Que tu tiempo no se detenga.
 			</h1>
 			<p class="mt-6 max-w-xl text-lg leading-relaxed text-white/90">
-				Te movilizamos a tu medida. Alquiler de vehículos y transporte privado para viajes, empresas,
+				Te movilizamos a tu medida para viajes locales e interprovinciales. Alquiler de vehículos y transporte privado para viajes, empresas,
 				traslados al aeropuerto y grupos.
 			</p>
 			<div class="mt-10 flex flex-col gap-4 sm:flex-row">
-				<ButtonLink href={site.quoteHref} variant="primary">Solicitar cotización</ButtonLink>
-				<ButtonLink href="#flota" variant="outline-light">Ver flota</ButtonLink>
+				<ButtonLink
+					href={site.quoteHref}
+					variant="primary"
+					class="group w-full px-10 py-5 text-base! shadow-[0_18px_44px_-14px_rgb(217_35_50_/_0.75)] ring-1 ring-white/25 sm:w-auto sm:text-lg!"
+				>
+					Solicitar cotización
+					<ArrowRight
+						size={20}
+						aria-hidden="true"
+						class="transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transition-none"
+					/>
+				</ButtonLink>
+				<!-- <ButtonLink href="#flota" variant="outline-light">Ver flota</ButtonLink> -->
 			</div>
 			<p class="mt-8 max-w-xl text-sm text-white/85">
 				Enviar una consulta no confirma una reserva. El equipo revisa la disponibilidad y te contacta para

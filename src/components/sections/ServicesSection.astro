@@ -1,19 +1,28 @@
 ---
 import { ArrowUpRight } from '@lucide/astro';
-import { services } from '../../data/services';
+import { serviceIds } from '../../data/services';
 import { site, siteImages } from '../../data/site';
+import { useTranslations } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section id="servicios" class="bg-white">
 	<div class="mx-auto grid max-w-7xl gap-12 px-5 py-20 lg:grid-cols-12 lg:gap-16 lg:px-8 lg:py-28">
 		<div class="lg:col-span-5">
-			<p class="text-sm font-bold uppercase tracking-[0.2em] text-brand-red">Servicios</p>
-			<h2 class="mt-3 text-3xl font-black sm:text-4xl">Transporte privado para cada necesidad</h2>
+			<p class="text-sm font-bold uppercase tracking-[0.2em] text-brand-red">{t.services.kicker}</p>
+			<h2 class="mt-3 text-3xl sm:text-4xl">{t.services.title}</h2>
 
 			<figure class="mt-8">
 				<img
 					src={siteImages.services}
-					alt="Pasajero trabajando con una laptop y hablando por teléfono en el asiento trasero de un vehículo"
+					alt={t.services.imageAlt}
 					width="4032"
 					height="2268"
 					loading="lazy"
@@ -25,28 +34,31 @@ import { site, siteImages } from '../../data/site';
 
 		<ul class="border-t border-charcoal/10 lg:col-span-6 lg:col-start-7">
 			{
-				services.map((service, index) => (
-					<li>
-						<a
-							href={site.quoteHref}
-							class="group grid grid-cols-[2rem_1fr] items-start gap-x-4 border-b border-charcoal/10 py-6"
-						>
-							<span class="pt-1 text-sm font-bold text-brand-red">
-								{String(index + 1).padStart(2, '0')}
-							</span>
-							<div>
-								<h3 class="text-lg font-bold tracking-tight transition-colors duration-200 group-hover:text-brand-red sm:text-xl">
-									{service.title}
-								</h3>
-								<p class="mt-2 leading-relaxed text-steel">{service.description}</p>
-								<span class="mt-4 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-charcoal underline decoration-brand-red decoration-2 underline-offset-8 transition-colors duration-200 group-hover:text-brand-red">
-									Solicitar cotización
-									<ArrowUpRight size={14} aria-hidden="true" />
+				serviceIds.map((id, index) => {
+					const service = t.services.items[id];
+					return (
+						<li>
+							<a
+								href={site.quoteHref}
+								class="group grid grid-cols-[2rem_1fr] items-start gap-x-4 border-b border-charcoal/10 py-6"
+							>
+								<span class="pt-1 text-sm font-bold text-brand-red">
+									{String(index + 1).padStart(2, '0')}
 								</span>
-							</div>
-						</a>
-					</li>
-				))
+								<div>
+									<h3 class="text-lg tracking-tight transition-colors duration-200 group-hover:text-brand-red sm:text-xl">
+										{service.title}
+									</h3>
+									<p class="mt-2 leading-relaxed text-steel">{service.description}</p>
+									<span class="mt-4 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-charcoal underline decoration-brand-red decoration-2 underline-offset-8 transition-colors duration-200 group-hover:text-brand-red">
+										{t.services.cta}
+										<ArrowUpRight size={14} aria-hidden="true" />
+									</span>
+								</div>
+							</a>
+						</li>
+					);
+				})
 			}
 		</ul>
 	</div>

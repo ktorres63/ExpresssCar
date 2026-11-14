@@ -1,3 +1,5 @@
+@import "@fontsource-variable/quicksand";
+@import "@fontsource/contrail-one/latin-400.css";
 @import "tailwindcss";
 
 @theme {
@@ -7,10 +9,19 @@
   --color-steel: #686B70;
   --color-mist: #F2F3F5;
 
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "Quicksand Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Contrail One", "Quicksand Variable", ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer base {
+  /* Contrail One solo tiene peso 400: se fuerza para evitar el falso negrita del navegador. */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+  }
+
   section[id] {
     scroll-margin-top: 5rem;
   }

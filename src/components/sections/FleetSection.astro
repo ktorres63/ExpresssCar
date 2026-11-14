@@ -1,24 +1,33 @@
 ---
 import VehicleCard from '../fleet/VehicleCard.astro';
 import { vehicles } from '../../data/vehicles';
+import { useTranslations } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section id="flota" class="bg-mist">
 	<div class="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
 		<div class="max-w-2xl">
-			<p class="text-sm font-bold uppercase tracking-[0.2em] text-brand-red">Flota</p>
-			<h2 class="mt-3 text-3xl font-black sm:text-4xl">Vehículos para cada tipo de viaje</h2>
+			<p class="text-sm font-bold uppercase tracking-[0.2em] text-brand-red">{t.fleet.kicker}</p>
+			<h2 class="mt-3 text-3xl sm:text-4xl">{t.fleet.title}</h2>
 			<p class="mt-4 text-lg leading-relaxed text-steel">
-				Parte de nuestras unidades full equipo
+				{t.fleet.intro}
 			</p>
 		</div>
 
 		<div class="mt-14 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
-			{vehicles.map((vehicle) => <VehicleCard vehicle={vehicle} />)}
+			{vehicles.map((vehicle) => <VehicleCard vehicle={vehicle} lang={lang} />)}
 		</div>
 
 		<p class="mt-8 max-w-3xl text-sm leading-relaxed text-steel">
-			Las fichas técnicas, la disponibilidad y las tarifas se confirman al revisar tu solicitud de cotización.
+			{t.fleet.note}
 		</p>
 	</div>
 </section>

@@ -1,0 +1,24 @@
+---
+import Hero from './sections/Hero.astro';
+import FleetSection from './sections/FleetSection.astro';
+import ServicesSection from './sections/ServicesSection.astro';
+import WhyChooseUs from './sections/WhyChooseUs.astro';
+import ArequipaSection from './sections/ArequipaSection.astro';
+import HowItWorks from './sections/HowItWorks.astro';
+import ContactSection from './sections/ContactSection.astro';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<Hero lang={lang} />
+<FleetSection lang={lang} />
+<ServicesSection lang={lang} />
+<WhyChooseUs lang={lang} />
+<ArequipaSection lang={lang} />
+<HowItWorks lang={lang} />
+<ContactSection lang={lang} />

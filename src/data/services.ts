@@ -1,35 +1,4 @@
-export interface Service {
-  id: string;
-  title: string;
-  description: string;
-}
+// Los textos de cada servicio viven en src/i18n/ui.ts, indexados por id.
+export const serviceIds = ['ejecutivo', 'alquiler', 'aeropuerto', 'turistico', 'chofer'] as const;
 
-// "Protección ejecutiva" no se incluye hasta confirmar el servicio exacto y cómo describirlo.
-export const services: Service[] = [
-  {
-    id: 'ejecutivo',
-    title: 'Transporte ejecutivo y corporativo',
-    description: 'Traslados para ejecutivos, reuniones y viajes de trabajo, coordinados con anticipación.',
-  },
-  {
-    id: 'alquiler',
-    title: 'Alquiler de vehículos',
-    description:
-      'Vehículos para tus desplazamientos. Indícanos las fechas y el tipo de vehículo que necesitas para revisar disponibilidad.',
-  },
-  {
-    id: 'aeropuerto',
-    title: 'Traslados al aeropuerto',
-    description: 'Recojo y traslado hacia y desde el aeropuerto, con horario y punto de encuentro acordados.',
-  },
-  {
-    id: 'turistico',
-    title: 'Transporte turístico',
-    description: 'Transporte privado para tus viajes de turismo, según el itinerario que acuerdes con nosotros.',
-  },
-  {
-    id: 'chofer',
-    title: 'Servicio con chofer',
-    description: 'Conductor para tus traslados, según el servicio que solicites.',
-  },
-];
+export type ServiceId = (typeof serviceIds)[number];

@@ -3,44 +3,50 @@ import '../styles/global.css';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 import { site } from '../data/site';
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
 
 interface Props {
+  lang: Lang;
   title?: string;
   description?: string;
 }
 
-const {
-  title = `${site.name} | Transporte privado en Arequipa`,
-  description = site.description,
-} = Astro.props;
+const { lang, title, description } = Astro.props;
+const t = useTranslations(lang);
+const pageTitle = title ?? t.meta.title;
+const pageDescription = description ?? t.meta.description;
+const locale = lang === 'es' ? 'es_PE' : 'en_US';
+const alternateLocale = lang === 'es' ? 'en_US' : 'es_PE';
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang}>
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
-		<title>{title}</title>
-		<meta name="description" content={description} />
+		<title>{pageTitle}</title>
+		<meta name="description" content={pageDescription} />
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content={site.name} />
-		<meta property="og:locale" content="es_PE" />
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
+		<meta property="og:locale" content={locale} />
+		<meta property="og:locale:alternate" content={alternateLocale} />
+		<meta property="og:title" content={pageTitle} />
+		<meta property="og:description" content={pageDescription} />
 	</head>
 	<body class="bg-white font-sans text-charcoal antialiased">
 		<a
 			href="#contenido"
 			class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:bg-white focus:px-4 focus:py-2 focus:text-charcoal"
 		>
-			Saltar al contenido
+			{t.header.skip}
 		</a>
-		<Header />
+		<Header lang={lang} />
 		<main id="contenido">
 			<slot />
 		</main>
-		<Footer />
+		<Footer lang={lang} />
 	</body>
 </html>

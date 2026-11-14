@@ -1,22 +1,29 @@
 ---
-import { navItems, site } from '../../data/site';
+import { useTranslations } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
 
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 const year = new Date().getFullYear();
 ---
 
 <footer class="bg-charcoal text-white">
 	<div class="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:grid-cols-3 lg:px-8">
 		<div>
-			<p class="text-lg font-black tracking-wide">
+			<p class="font-display text-lg tracking-wide">
 				G&amp;L <span class="text-brand-red">CAR EXPRESS</span>
 			</p>
-			<p class="mt-4 max-w-xs text-sm leading-relaxed text-white/75">{site.slogan}</p>
+			<p class="mt-4 max-w-xs text-sm leading-relaxed text-white/75">{t.footer.slogan}</p>
 		</div>
 
-		<nav aria-label="Pie de página">
+		<nav aria-label={t.footer.navLabel}>
 			<ul class="grid grid-cols-2 gap-x-8 gap-y-3 text-sm">
 				{
-					navItems.map((item) => (
+					t.nav.map((item) => (
 						<li>
 							<a
 								href={item.href}
@@ -30,12 +37,12 @@ const year = new Date().getFullYear();
 			</ul>
 		</nav>
 
-		<p class="text-sm text-white/75">{site.location} 2026</p>
+		<p class="text-sm text-white/75">{t.location}</p>
 	</div>
 
 	<div class="border-t border-white/10">
 		<p class="mx-auto max-w-7xl px-5 py-6 text-xs text-white/60 lg:px-8">
-			© {year} G&amp;L CAR EXPRESS. Todos los derechos reservados.
+			{t.footer.rights(year)}
 		</p>
 	</div>
 </footer>

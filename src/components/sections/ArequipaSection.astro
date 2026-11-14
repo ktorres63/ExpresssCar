@@ -2,26 +2,34 @@
 import ButtonLink from '../ui/ButtonLink.astro';
 import PhotoSlot from '../ui/PhotoSlot.astro';
 import { site, siteImages } from '../../data/site';
+import { useTranslations } from '../../i18n/utils';
+import type { Lang } from '../../i18n/ui';
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section id="arequipa" class="bg-white">
 	<div class="mx-auto grid max-w-7xl items-center gap-12 px-5 py-20 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-28">
 		<PhotoSlot
 			src={siteImages.arequipa}
-			alt="Mapa de la región Arequipa con sus principales localidades"
-			placeholder="Fotografía de Arequipa pendiente (material con licencia o del cliente)"
+			alt={t.arequipa.imageAlt}
+			placeholder={t.arequipa.placeholder}
 			class="aspect-[3/2] w-full"
 		/>
 
 		<div>
-			<p class="text-sm font-bold uppercase tracking-[0.2em] text-brand-red">Arequipa</p>
-			<h2 class="mt-3 text-3xl font-black sm:text-4xl">Transporte privado para tu visita a Arequipa</h2>
+			<p class="text-sm font-bold uppercase tracking-[0.2em] text-brand-red">{t.arequipa.kicker}</p>
+			<h2 class="mt-3 text-3xl sm:text-4xl">{t.arequipa.title}</h2>
 			<p class="mt-6 text-lg leading-relaxed text-steel">
-				Si visitas Arequipa por turismo, negocios o un evento, podemos organizar tu transporte privado.
-				Coordinamos el servicio según las fechas y el itinerario que acuerdes con nosotros.
+				{t.arequipa.description}
 			</p>
 			<div class="mt-10">
-				<ButtonLink href={site.quoteHref} variant="outline-dark">Solicitar cotización</ButtonLink>
+				<ButtonLink href={site.quoteHref} variant="outline-dark">{t.arequipa.cta}</ButtonLink>
 			</div>
 		</div>
 	</div>

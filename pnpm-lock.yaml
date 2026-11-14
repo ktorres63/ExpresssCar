@@ -8,6 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@fontsource-variable/quicksand':
+        specifier: ^5.3.0
+        version: 5.3.0
+      '@fontsource/contrail-one':
+        specifier: ^5.3.0
+        version: 5.3.0
       '@lucide/astro':
         specifier: ^1.61.0
         version: 1.61.0(astro@7.4.2(jiti@2.7.0)(yaml@2.9.1))
@@ -203,6 +209,12 @@ packages:
 
   '@emnapi/wasi-threads@1.2.3':
     resolution: {integrity: sha512-ELEBe8PsLvvJ6QMr0zLt8ffvOHW/dc1m3CEzNMg7aJUv3bMaoDtw2TXyDAwkYBuroxxuHEwhRTLJSe5sya547g==}
+
+  '@fontsource-variable/quicksand@5.3.0':
+    resolution: {integrity: sha512-EMyoXnGC0uIbjyHDB01MTJoQuODsMo7Q/4XLEwN97YJEeV1WIVFI0QBiW2exGnxvhnMHb+IwQ9E5QZDgGMWCHw==}
+
+  '@fontsource/contrail-one@5.3.0':
+    resolution: {integrity: sha512-iteokphWbChTWftOCHpLbYCEF4rcoiqDNb32rxJJ8e/RwGSL871c59GmMJmKnCeBcVqqFxvHoSR8bRtbeiXK4w==}
 
   '@img/colour@1.1.0':
     resolution: {integrity: sha512-Td76q7j57o/tLVdgS746cYARfSyxk8iEfRxewL9h4OMzYhbW4TAcppl0mT4eyqXddh6L/jwoM75mo7ixa/pCeQ==}
@@ -1618,6 +1630,10 @@ snapshots:
     dependencies:
       tslib: 2.8.1
     optional: true
+
+  '@fontsource-variable/quicksand@5.3.0': {}
+
+  '@fontsource/contrail-one@5.3.0': {}
 
   '@img/colour@1.1.0':
     optional: true

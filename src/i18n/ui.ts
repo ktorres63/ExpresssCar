@@ -32,7 +32,7 @@ const es = {
   hero: {
     title: 'Que tu tiempo no se detenga.',
     description:
-      'Te movilizamos a tu medida para viajes locales e interprovinciales. Alquiler de vehículos y transporte privado para viajes, empresas, traslados al aeropuerto y grupos.',
+      'Viaja cómodo y seguro con nuestros choferes calificados, incluidos en todos los servicios. Alquiler de vehículos y transporte privado para viajes locales e interprovinciales, servicios para empresas, grupos y particulares. Traslados al aeropuerto y otros destinos. ¡Reserva tu servicio hoy mismo!',
     cta: 'Solicitar cotización',
     note: 'Enviar una consulta no confirma una reserva. El equipo revisa la disponibilidad y te contacta para confirmar los detalles.',
   },
@@ -219,7 +219,7 @@ const en = {
   hero: {
     title: 'So your time doesn\'t stop.',
     description:
-      'Private transport tailored to you for local and interprovincial trips. Vehicle rental and private transport for travels, companies, airport transfers and groups.',
+      'Travel comfortably and safely with our qualified drivers, included in all our services. We offer vehicle rentals and private transportation for local and interprovincial trips, corporate services, and transportation for groups and individuals. Airport transfers and transportation to other destinations. Book your service today!',
     cta: 'Request a quote',
     note: 'Sending an inquiry does not confirm a booking. Our team checks availability and contacts you to confirm the details.',
   },

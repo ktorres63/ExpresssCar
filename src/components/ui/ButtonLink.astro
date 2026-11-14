@@ -8,7 +8,8 @@ interface Props extends HTMLAttributes<'a'> {
 const { variant = 'primary', class: className, ...rest } = Astro.props;
 
 const variants: Record<NonNullable<Props['variant']>, string> = {
-  primary: 'bg-brand-red text-white hover:bg-brand-red-dark',
+  primary:
+    'bg-linear-to-br from-brand-red to-brand-red-dark text-white hover:brightness-110',
   'outline-light': 'border-2 border-white text-white hover:bg-white hover:text-charcoal',
   'outline-dark': 'border-2 border-charcoal text-charcoal hover:bg-charcoal hover:text-white',
 };
@@ -16,7 +17,7 @@ const variants: Record<NonNullable<Props['variant']>, string> = {
 
 <a
   class:list={[
-    'inline-flex min-h-12 items-center justify-center gap-2 px-6 py-3 text-sm font-bold uppercase tracking-wide transition-colors duration-200',
+    'inline-flex min-h-12 items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-bold uppercase tracking-wide transition duration-200',
     variants[variant],
     className,
   ]}

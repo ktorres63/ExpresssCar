@@ -34,7 +34,7 @@ const es = {
     description:
       'Viaja cómodo y seguro con nuestros choferes calificados, incluidos en todos los servicios. Alquiler de vehículos y transporte privado para viajes locales e interprovinciales, servicios para empresas, grupos y particulares. Traslados al aeropuerto y otros destinos. ¡Reserva tu servicio hoy mismo!',
     cta: 'Solicitar cotización',
-    note: 'Enviar una consulta no confirma una reserva. El equipo revisa la disponibilidad y te contacta para confirmar los detalles.',
+    note: 'Cuéntanos qué necesitas. Nuestro equipo revisará tu pedido y te contactará para dejar tu servicio listo.',
   },
   fleet: {
     kicker: 'Flota',
@@ -221,7 +221,7 @@ const en = {
     description:
       'Travel comfortably and safely with our qualified drivers, included in all our services. We offer vehicle rentals and private transportation for local and interprovincial trips, corporate services, and transportation for groups and individuals. Airport transfers and transportation to other destinations. Book your service today!',
     cta: 'Request a quote',
-    note: 'Sending an inquiry does not confirm a booking. Our team checks availability and contacts you to confirm the details.',
+    note: 'Tell us what you need. Our team will review your request and contact you to get your service ready.',
   },
   fleet: {
     kicker: 'Fleet',

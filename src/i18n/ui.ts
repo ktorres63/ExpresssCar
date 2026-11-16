@@ -69,7 +69,6 @@ const es = {
     title: 'Transporte privado para cada necesidad',
     imageAlt:
       'Pasajero trabajando con una laptop y hablando por teléfono en el asiento trasero de un vehículo',
-    cta: 'Solicitar cotización',
     items: {
       ejecutivo: {
         title: 'Transporte ejecutivo y corporativo',
@@ -77,23 +76,19 @@ const es = {
           'Traslados para ejecutivos, reuniones y viajes de trabajo, coordinados con anticipación.',
       },
       alquiler: {
-        title: 'Alquiler de vehículos',
+        title: 'Alquila tu vehículo, con chofer incluido',
         description:
-          'Vehículos para tus desplazamientos. Indícanos las fechas y el tipo de vehículo que necesitas para revisar disponibilidad.',
+          'Muévete con comodidad y sin preocuparte por manejar. Indícanos las fechas y el tipo de vehículo, y nuestro chofer calificado se encarga del resto.',
       },
       aeropuerto: {
         title: 'Traslados al aeropuerto',
         description:
-          'Recojo y traslado hacia y desde el aeropuerto, con horario y punto de encuentro acordados.',
+          'Traslados desde y hacia el aeropuerto con chofer calificado, en el horario y punto que acordemos. Extiende el servicio según lo necesites.',
       },
       turistico: {
         title: 'Transporte turístico',
         description:
-          'Transporte privado para tus viajes de turismo, según el itinerario que acuerdes con nosotros.',
-      },
-      chofer: {
-        title: 'Servicio con chofer',
-        description: 'Conductor para tus traslados, según el servicio que solicites.',
+          'Descubre Arequipa y más destinos con transporte privado y chofer calificado, según tu itinerario.',
       },
     } satisfies Record<ServiceId, { title: string; description: string }>,
   },
@@ -255,30 +250,26 @@ const en = {
     kicker: 'Services',
     title: 'Private transport for every need',
     imageAlt: 'Passenger working on a laptop and talking on the phone in the back seat of a vehicle',
-    cta: 'Request a quote',
     items: {
       ejecutivo: {
-        title: 'Executive and corporate transport',
-        description: 'Transfers for executives, meetings and business trips, coordinated in advance.',
+        title: 'Executive and corporate transportation',
+        description:
+          'Transportation for executives, meetings, and business trips, arranged in advance.',
       },
       alquiler: {
-        title: 'Vehicle rental',
+        title: 'Rent a vehicle with a driver included',
         description:
-          'Vehicles for your trips. Tell us the dates and the type of vehicle you need so we can check availability.',
+        'Travel in comfort without worrying about driving. Let us know your dates and preferred vehicle type, and our qualified driver will take care of the rest.',
       },
       aeropuerto: {
         title: 'Airport transfers',
         description:
-          'Pick-up and transfer to and from the airport, with the schedule and meeting point agreed in advance.',
+          'Transfers to and from the airport with a qualified driver, at the agreed time and location. Extend the service as needed.',
       },
       turistico: {
-        title: 'Tourist transport',
+        title: 'Tourist transportation',
         description:
-          'Private transport for your sightseeing trips, following the itinerary you agree with us.',
-      },
-      chofer: {
-        title: 'Chauffeur service',
-        description: 'A driver for your transfers, according to the service you request.',
+          'Discover Arequipa and other destinations with private transportation and a qualified driver, tailored to your itinerary.',
       },
     },
   },

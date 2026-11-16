@@ -23,7 +23,7 @@ export const contactDetails: ContactDetails = {
 export const siteImages: { arequipa: string | null; services: string; fleet: string } = {
   arequipa: '/images/mapaArequipa.jpeg',
   services: '/images/imgBusiness.webp',
-  fleet: '/images/FlotaIA.jpeg',
+  fleet: '/images/FlotaIA.webp',
 };
 
 // Fondo del hero principal. La imagen se muestra siempre; el video solo se carga en escritorio.

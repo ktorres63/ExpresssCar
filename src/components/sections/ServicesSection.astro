@@ -1,5 +1,4 @@
 ---
-import { ArrowUpRight } from '@lucide/astro';
 import { serviceIds } from '../../data/services';
 import { site, siteImages } from '../../data/site';
 import { useTranslations } from '../../i18n/utils';
@@ -50,10 +49,6 @@ const t = useTranslations(lang);
 										{service.title}
 									</h3>
 									<p class="mt-2 leading-relaxed text-steel">{service.description}</p>
-									<span class="mt-4 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-charcoal underline decoration-brand-red decoration-2 underline-offset-8 transition-colors duration-200 group-hover:text-brand-red">
-										{t.services.cta}
-										<ArrowUpRight size={14} aria-hidden="true" />
-									</span>
 								</div>
 							</a>
 						</li>

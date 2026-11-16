@@ -1,5 +1,5 @@
 ---
-import { MessageCircle, Phone, Mail } from '@lucide/astro';
+import { ArrowRight, MessageCircle, Phone, Mail } from '@lucide/astro';
 import ButtonLink from '../ui/ButtonLink.astro';
 import { contactDetails } from '../../data/site';
 import { useTranslations } from '../../i18n/utils';
@@ -68,8 +68,14 @@ const requestDetails = t.contact.details;
 								variant="primary"
 								target="_blank"
 								rel="noopener noreferrer"
+								class="group w-full px-10 py-5 text-base! inset-ring-1 inset-ring-white/25 sm:w-auto sm:text-lg!"
 							>
 								{t.contact.cta}
+								<ArrowRight
+									size={20}
+									aria-hidden="true"
+									class="transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transition-none"
+								/>
 							</ButtonLink>
 							<p class="mt-3 text-sm text-white/70">
 								{t.contact.whatsappNote}
@@ -80,9 +86,10 @@ const requestDetails = t.contact.details;
 							<button
 								type="button"
 								disabled
-								class="inline-flex min-h-12 cursor-not-allowed items-center justify-center rounded-xl bg-white/10 px-6 py-3 text-sm font-bold uppercase tracking-wide text-white/50"
+								class="inline-flex min-h-12 w-full cursor-not-allowed items-center justify-center gap-2 rounded-xl bg-linear-to-br from-brand-red/40 to-brand-red-dark/40 px-10 py-5 text-base font-bold uppercase tracking-wide text-white/75 inset-ring-1 inset-ring-white/15 sm:w-auto sm:text-lg"
 							>
 								{t.contact.cta}
+								<ArrowRight size={20} aria-hidden="true" />
 							</button>
 							<p class="mt-3 text-sm text-white/70">{t.contact.whatsappPending}</p>
 						</>

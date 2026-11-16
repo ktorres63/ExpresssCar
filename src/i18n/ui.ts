@@ -20,7 +20,7 @@ const es = {
     { label: 'Nosotros', href: '#nosotros' },
     { label: 'Contacto', href: '#contacto' },
   ],
-  location: 'Arequipa, Perú',
+  enterprice: 'Grupo MACSE E.I.R.L',
   header: {
     skip: 'Saltar al contenido',
     navLabel: 'Principal',
@@ -95,32 +95,33 @@ const es = {
   why: {
     kicker: 'Nosotros',
     title: '¿Por qué elegir G&L CAR EXPRESS?',
+    description:
+      'Somos la empresa con los más altos estándares de calidad en la región Arequipa. Te ofrecemos unidades de primer nivel, cómodas y de excelente rendimiento, con todo incluido y un equipo capacitado que te acompaña y te guía para que tengas la mejor experiencia en tu estadía o misión.',
     items: [
       {
         title: 'Atención personalizada',
         description:
-          'Adaptamos el servicio a tu viaje: tipo de vehículo, número de pasajeros y horario.',
+          'Adaptamos el servicio a tus necesidades: tipo de vehículo, número de pasajeros, horarios y recorrido.',
       },
       {
         title: 'Coordinación con anticipación',
         description:
-          'Revisamos cada solicitud antes de confirmar fecha, vehículo y detalles del servicio.',
+          'Validamos cada detalle con anticipación: fecha, vehículo y chofer calificado, para que solo te preocupes por disfrutar.',
       },
       {
-        title: 'Para distintos tipos de cliente',
+        title: 'Conductores profesionales',
         description:
-          'Viajeros de negocios, turistas, empresas, familias y grupos que necesitan transporte privado.',
+          'Choferes expertos en rutas locales e interprovinciales, para que viajes con seguridad y sin contratiempos.',
       },
       {
-        title: 'Confirmación directa',
+        title: 'Vehículos de máximo desempeño',
         description:
-          'Te contactamos para validar los detalles. Una consulta no se considera reserva confirmada hasta ese momento.',
+          'Unidades de primer nivel, cómodas y bien equipadas, con la potencia y confiabilidad que tu viaje merece. Unidades no rotuladas.',
       },
     ],
   },
   arequipa: {
-    kicker: 'Arequipa',
-    title: 'Transporte privado para tu visita a Arequipa',
+    title: 'Elige cómo quieres moverte',
     description:
       'Si visitas Arequipa por turismo, negocios o un evento, podemos organizar tu transporte privado. Coordinamos el servicio según las fechas y el itinerario que acuerdes con nosotros.',
     cta: 'Solicitar cotización',
@@ -202,7 +203,7 @@ const en = {
     { label: 'About', href: '#nosotros' },
     { label: 'Contact', href: '#contacto' },
   ],
-  location: 'Arequipa, Peru',
+  enterprice: 'Grupo MACSE E.I.R.L',
   header: {
     skip: 'Skip to content',
     navLabel: 'Main',
@@ -276,32 +277,33 @@ const en = {
   why: {
     kicker: 'About us',
     title: 'Why choose G&L CAR EXPRESS?',
+    description:
+      'We hold the highest quality standards in the Arequipa region. We offer top-tier vehicles that are comfortable and high-performing, with everything included, and a trained team that accompanies and guides you so your stay or assignment is the best it can be.',
     items: [
       {
         title: 'Personal attention',
         description:
-          'We adapt the service to your trip: type of vehicle, number of passengers and schedule.',
+          'We adapt the service to your needs: type of vehicle, number of passengers, schedule and route.',
       },
       {
         title: 'Advance coordination',
         description:
-          'We review every request before confirming the date, vehicle and service details.',
+          'We confirm every detail in advance: date, vehicle and qualified driver, so all you have to do is enjoy the trip.',
       },
       {
-        title: 'For different types of clients',
+        title: 'Professional drivers',
         description:
-          'Business travellers, tourists, companies, families and groups who need private transport.',
+          'Drivers with experience on local and interprovincial routes, so you travel safely and without setbacks.',
       },
       {
-        title: 'Direct confirmation',
+        title: 'Top-performance vehicles',
         description:
-          'We contact you to confirm the details. An inquiry is not considered a confirmed booking until then.',
+          'Top-tier, comfortable and well-equipped vehicles, with the power and reliability your trip deserves. Unbranded vehicles.',
       },
     ],
   },
   arequipa: {
-    kicker: 'Arequipa',
-    title: 'Private transport for your visit to Arequipa',
+    title: 'Choose how you want to travel.',
     description:
       'If you are visiting Arequipa for tourism, business or an event, we can arrange your private transport. We coordinate the service according to the dates and itinerary you agree with us.',
     cta: 'Request a quote',

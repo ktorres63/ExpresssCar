@@ -1,4 +1,4 @@
-export const vehicleIds = [
+const vehicleIds = [
   'ford-territory',
   'nissan-urvan',
   'toyota-rav4',

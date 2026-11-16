@@ -43,20 +43,6 @@ const es = {
     note: 'Las fichas técnicas, la disponibilidad y las tarifas se confirman al revisar tu solicitud de cotización.',
     categories: { suv: 'SUV', van: 'Van' } satisfies Record<VehicleCategory, string>,
     service: 'Transporte privado',
-    zone: 'Arequipa',
-    availability: 'A confirmar',
-    detailsTitle: 'Detalles del servicio',
-    labels: {
-      service: 'Servicio',
-      zone: 'Zona',
-      availability: 'Disponibilidad',
-      passengers: 'Pasajeros',
-      luggage: 'Maletas',
-      transmission: 'Transmisión',
-      climate: 'A/C',
-    },
-    transmission: { automatic: 'Automática', manual: 'Manual' },
-    climate: { yes: 'Sí', no: 'No' },
     alt: {
       'ford-territory': 'Ford Territory gris claro en un paisaje desértico',
       'nissan-urvan': 'Nissan Urvan blanca frente a un concesionario',
@@ -226,20 +212,6 @@ const en = {
     note: 'Specifications, availability and rates are confirmed when we review your quote request.',
     categories: { suv: 'SUV', van: 'Van' },
     service: 'Private transport',
-    zone: 'Arequipa',
-    availability: 'To be confirmed',
-    detailsTitle: 'Service details',
-    labels: {
-      service: 'Service',
-      zone: 'Area',
-      availability: 'Availability',
-      passengers: 'Passengers',
-      luggage: 'Luggage',
-      transmission: 'Transmission',
-      climate: 'A/C',
-    },
-    transmission: { automatic: 'Automatic', manual: 'Manual' },
-    climate: { yes: 'Yes', no: 'No' },
     alt: {
       'ford-territory': 'Light grey Ford Territory in a desert landscape',
       'nissan-urvan': 'White Nissan Urvan outside a dealership',
@@ -376,5 +348,3 @@ export const ui = {
   es,
   en,
 } satisfies Record<Lang, typeof es>;
-
-export type Translation = typeof es;

@@ -21,7 +21,7 @@ export const contactDetails: ContactDetails = {
 
 // Imágenes de secciones dentro de public/.
 export const siteImages: { arequipa: string | null; services: string; fleet: string } = {
-  arequipa: '/images/mapaArequipa.jpeg',
+  arequipa: '/images/mapaArequipa.webp',
   services: '/images/imgBusiness.webp',
   fleet: '/images/FlotaIA.webp',
 };

@@ -14,7 +14,7 @@ export const site = {
 } as const;
 
 export const contactDetails: ContactDetails = {
-  whatsapp: null,
+  whatsapp: '51958952141',
   phone: null,
   email: null,
 };

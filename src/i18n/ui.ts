@@ -163,6 +163,7 @@ const es = {
     whatsappNote: 'Se abrirá WhatsApp con un mensaje listo para enviar.',
     whatsappPending: '[Número de WhatsApp pendiente de confirmar]',
     whatsappMessage: 'Hola, quisiera solicitar una cotización de transporte.',
+    whatsappFab: 'Escríbenos por WhatsApp',
     channels: {
       whatsapp: { label: 'WhatsApp', pending: 'Número de WhatsApp pendiente de confirmar' },
       phone: { label: 'Teléfono', pending: 'Número pendiente de confirmar' },
@@ -331,6 +332,7 @@ const en = {
     whatsappNote: 'WhatsApp will open with a message ready to send.',
     whatsappPending: '[WhatsApp number pending confirmation]',
     whatsappMessage: 'Hello, I would like to request a transport quote.',
+    whatsappFab: 'Message us on WhatsApp',
     channels: {
       whatsapp: { label: 'WhatsApp', pending: 'WhatsApp number pending confirmation' },
       phone: { label: 'Phone', pending: 'Phone number pending confirmation' },
